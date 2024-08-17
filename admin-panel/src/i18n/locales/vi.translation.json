@@ -1,0 +1,77 @@
+{
+  "sidebar": {
+    "overview": "Tổng quan",
+    "system": "Hệ thống",
+    "categories": "Danh mục",
+    "bargeNotion": "Định nghĩa sà lan",
+    "bargePlan": "Quản lý sà lan",
+    "plan": "Kế hoạch",
+    "tool": "Công cụ",
+    "categoriesItems": {
+      "miningCompanies": "Danh mục hãng khai thác",
+      "customers": "Danh mục khách hàng",
+      "containerSize": "Danh mục kích cỡ container",
+      "sector": "Danh mục loại hàng",
+      "commodity": "Danh mục hàng hóa",
+      "port": "Danh mục Cảng/ICD",
+      "containerStatus": "Danh mục tình trạng container",
+      "deliveryPlan": "Danh mục phương án giao-nhận",
+      "containerDirection": "Danh mục hướng container",
+      "loadingInstruction": "Danh mục chỉ dẫn xếp dỡ",
+      "vendor": "Danh mục vendor"
+    }
+  },
+  "components": {
+    "uploader": {
+      "chooseFile": "Choose files",
+      "browserFile": "Browse files",
+      "dropFile": "Drop your files here, or "
+    },
+    "table": {
+      "resultPerPage": "Results per page"
+    }
+  },
+  "profile": "Thông tin",
+  "setting": "Cài đặt",
+  "logout": "Đăng xuất",
+  "commons": {
+    "add": "Thêm mới",
+    "edit": "Sửa",
+    "editTitle": "Cập nhật",
+    "delete": "Xóa",
+    "exportExcel": "Xuất Excel",
+    "status": "Trạng thái",
+    "search": "Tìm kiếm",
+    "cancel": "Cancel",
+    "save": "save",
+    "active": "Hoạt động",
+    "inactive": "Không hoạt động",
+    "backToHome": "Quay lại trang chủ"
+  },
+  "validateErrors": {
+    "required": "Trường này không được để trống"
+  },
+  "operation": {
+    "order": "STT",
+    "shipCode": "Mã hãng tàu",
+    "shipName": "Tên tàu",
+    "paymentType": "Loại thanh toán",
+    "placeholder": {
+      "shipCode": "Nhập mã hãng tàu",
+      "shipName": "Nhập tên tàu",
+      "paymentType": "Chọn loại thanh toán"
+    },
+    "notifications": {
+      "saveSuccess": "Lưu hãng khai thác thành công.",
+      "deleteSuccess": "Xóa hãng khai thác thành công.",
+      "saveError": "Lưu hãng khai thác thất bại. Vui Lòng thử lại",
+      "deleteError": "Xóa hãng khai thác thất bại. Vui Lòng thử lại"
+    }
+  },
+  "notFound": {
+    "title": "Ôi không! Đã có lỗi xảy ra.",
+    "desc": "Chúng tôi không tìm thấy URL bạn vừa truy cập trên server của chúng tôi. Đó là tất cả những gì chúng tôi biết.",
+    "dataNotAvailable": "Không tìm thấy kết quả phù hợp",
+    "tryAgain": "Hãy thử điều chỉnh từ khoá tìm kiếm hoặc thay đổi tuỳ chọn trong Bộ lọc (nếu có) để đạt được kết quả mong muốn!"
+  }
+}

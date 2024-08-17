@@ -1,0 +1,77 @@
+{
+  "sidebar": {
+    "overview": "Overview",
+    "system": "System",
+    "categories": "Categories",
+    "bargeNotion": "Barge Notion",
+    "bargePlan": "Manage Barge",
+    "plan": "Plan",
+    "tool": "Tool",
+    "categoriesItems": {
+      "miningCompanies": "Mining Companies",
+      "customers": "Customers",
+      "containerSize": "Container Size",
+      "sector": "Sector",
+      "commodity": "Commodity",
+      "port": "Port",
+      "containerStatus": "Container Status",
+      "deliveryPlan": "Delivery Plan",
+      "containerDirection": "Container Direction",
+      "loadingInstruction": "Loading Instruction",
+      "vendor": "Vendor"
+    }
+  },
+  "components": {
+    "uploader": {
+      "chooseFile": "Choose files",
+      "browserFile": "Browse files",
+      "dropFile": "Drop your files here, or "
+    },
+    "table": {
+      "resultPerPage": "Results per page"
+    }
+  },
+  "profile": "Profile",
+  "setting": "Setting",
+  "logout": "Logout",
+  "commons": {
+    "add": "Add New",
+    "edit": "Edit",
+    "editTitle": "Edit",
+    "delete": "Delete",
+    "exportExcel": "Export Excel",
+    "status": "Status",
+    "search": "Search",
+    "cancel": "Cancel",
+    "save": "save",
+    "active": "Active",
+    "inactive": "Inactive",
+    "backToHome": "Back to home"
+  },
+  "validateErrors": {
+    "required": "This field is required"
+  },
+  "operation": {
+    "order": "STT",
+    "shipCode": "Ship Code",
+    "shipName": "Ship Name",
+    "paymentType": "Payment Type",
+    "placeholder": {
+      "shipCode": "Enter ship code",
+      "shipName": "Enter ship name",
+      "paymentType": "Select payment type"
+    },
+    "notifications": {
+      "saveSuccess": "Operation has been saved successfully.",
+      "deleteSuccess": "Delete operation success.",
+      "saveError": "Save operation failed. Please try again.",
+      "deleteError": "Delete operation failed. Please try again."
+    }
+  },
+  "notFound": {
+    "title": "Oh no! Error! An error occurred. Please try again later.",
+    "desc": "We couldn't find the URL you just visited on our server. That's all we know.",
+    "dataNotAvailable": "Data is not available",
+    "tryAgain": "Try adjusting your search keywords or changing options in Filters (if any) to achieve your desired results!"
+  }
+}

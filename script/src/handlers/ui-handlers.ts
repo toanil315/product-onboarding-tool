@@ -204,7 +204,7 @@ export const scrollIfElementIsNotInViewport = async (
   }
 };
 
-export const openVideoPopup = (videoUrl: string) => {
+window.openVideoPopup = (videoUrl: string) => {
   const mainDriverInstance = isInEditor
     ? toolDriverInstance
     : webDriverInstance;
@@ -238,15 +238,15 @@ export const openVideoPopup = (videoUrl: string) => {
   });
 };
 
-export const onCloseVideoPopup = () => {
+window.onCloseVideoPopup = () => {
   window.dispatchEvent(new CustomEvent(MESSAGES_EVENT_ENUM.CLOSE_VIDEO_POPUP));
 };
 
-export const onDestroyClick = () => {
+window.onDestroyClick = () => {
   webDriverInstance.destroy();
 };
 
-export const onClickSkip = () => {
+window.onClickSkip = () => {
   webDriverInstance.moveNext();
 };
 

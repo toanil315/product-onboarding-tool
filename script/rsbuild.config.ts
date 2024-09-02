@@ -17,9 +17,6 @@ export default defineConfig({
             terserOptions: {
               keep_fnames: true,
               mangle: true,
-              compress: {
-                unused: false,
-              },
             },
           })
         );

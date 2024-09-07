@@ -2,9 +2,17 @@ export type PopoverType = "tooltip" | "modal" | "driven action";
 export type ActionType = "click" | "input";
 export type MethodGetElement = "id" | "dom-hierarchy";
 
+export interface DescriptionItem {
+  type: "text" | "image" | "link" | "media";
+  value: string;
+  alt?: string;
+  linkText?: string;
+  mediaText?: string;
+}
+
 export interface Popover {
   title?: string;
-  description?: string;
+  description?: DescriptionItem[];
   detailLink?: string;
   videoUrl?: string;
   stepType: PopoverType;

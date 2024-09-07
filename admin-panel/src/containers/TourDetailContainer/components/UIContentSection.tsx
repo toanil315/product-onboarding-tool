@@ -1,5 +1,8 @@
 import { Input, Select } from "@/components";
-import { Step } from "@/types/Step";
+import { DescriptionItem, Step } from "@/types/Step";
+import { EditPopoverUiTrigger } from "./EditPopoverUiTrigger";
+import { FormProvider, useForm } from "react-hook-form";
+import { useEffect } from "react";
 
 interface UIContentSectionProps {
   step: Step;
@@ -15,6 +18,20 @@ export const UIContentSection = ({
   step,
   onStepChange,
 }: UIContentSectionProps) => {
+  const form = useForm({
+    defaultValues: {
+      title: "",
+      description: [] as DescriptionItem[],
+    },
+  });
+
+  useEffect(() => {
+    form.reset({
+      title: step.title,
+      description: step.description || [],
+    });
+  }, [JSON.stringify(step)]);
+
   const handlePopoverConfigChange =
     (key: string) => (value: string | number | undefined) => {
       onStepChange({
@@ -23,35 +40,17 @@ export const UIContentSection = ({
       });
     };
 
+  const handlePublishPopoverUI = (
+    newStepProps: Pick<Step, "title" | "description">
+  ) => {
+    onStepChange({
+      ...step,
+      ...newStepProps,
+    });
+  };
+
   return (
     <div className="flex flex-col gap-6">
-      <Input
-        label="Popover Title"
-        placeholder="Enter popover title"
-        value={step.title}
-        onChange={handlePopoverConfigChange("title")}
-      />
-      <Input
-        label="Popover Description"
-        type="textarea"
-        placeholder="Enter popover description"
-        value={step.description}
-        onChange={handlePopoverConfigChange("description")}
-      />
-      {step.stepType !== "modal" && (
-        <Input
-          label="Detail Link"
-          placeholder="Enter popover detail link"
-          value={step.detailLink}
-          onChange={handlePopoverConfigChange("detailLink")}
-        />
-      )}
-      <Input
-        label="Video Link"
-        placeholder="Enter popover video link"
-        value={step.videoUrl}
-        onChange={handlePopoverConfigChange("videoUrl")}
-      />
       {step.stepType === "driven action" && (
         <Select
           name="action"
@@ -65,6 +64,9 @@ export const UIContentSection = ({
           ]}
         />
       )}
+      <FormProvider {...form}>
+        <EditPopoverUiTrigger onPublish={handlePublishPopoverUI} />
+      </FormProvider>
     </div>
   );
 };

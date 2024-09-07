@@ -3,7 +3,7 @@ import { PopoverConfig, Step, StepResponse } from "@/entities/Step";
 import { BASE_TOUR_CONFIG, toolDriverInstance } from "@/libs/driverJs";
 import { closeButtonTemplate } from "@/templates/close-button";
 import { modalTemplate } from "@/templates/modal";
-import { tooltipDocumentTemplate } from "@/templates/tooltip-document";
+import { popoverDescriptionTemplate } from "@/templates/popover-description";
 import { UiUtils } from "@/utils/ui";
 import {
   preventActionIfElementIsTooltip,
@@ -19,17 +19,10 @@ import { MESSAGES_EVENT_ENUM } from "@/constants/event";
 
 export const buildPopoverContent = (popoverConfig: PopoverConfig) => {
   if (popoverConfig.stepType !== POPOVER_TYPE_ENUM.modal) {
-    const hasMoreInfo = popoverConfig.detailLink || popoverConfig.videoUrl;
     return {
       ...popoverConfig,
       title: popoverConfig.title + closeButtonTemplate,
-      description: hasMoreInfo
-        ? popoverConfig.description +
-          tooltipDocumentTemplate(
-            popoverConfig.detailLink || "",
-            popoverConfig.videoUrl || ""
-          )
-        : popoverConfig.description,
+      description: popoverDescriptionTemplate(popoverConfig.description),
     };
   }
 
@@ -101,14 +94,9 @@ export const updateContentOfTooltip = (step: Step) => {
   }
 
   if (popoverDescription) {
-    popoverDescription.innerHTML =
-      popoverConfig.detailLink || popoverConfig.videoUrl
-        ? popoverConfig.description +
-          tooltipDocumentTemplate(
-            popoverConfig.detailLink || "",
-            popoverConfig.videoUrl || ""
-          )
-        : popoverConfig.description;
+    popoverDescription.innerHTML = popoverDescriptionTemplate(
+      step.popover.description
+    );
   }
 };
 
@@ -125,7 +113,8 @@ export const updateContentOfModal = (step: Step) => {
   const popoverConfig = step.popover;
 
   if (modalTitle) modalTitle.innerHTML = popoverConfig.title;
-  if (modalDescription) modalDescription.innerHTML = popoverConfig.description;
+  // TODO: Add description to modal
+  if (modalDescription) modalDescription.innerHTML = "";
 
   if (modalVideoContainer.src !== popoverConfig.videoUrl) {
     modalVideoContainer.src = popoverConfig.videoUrl as string;

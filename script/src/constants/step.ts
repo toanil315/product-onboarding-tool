@@ -13,3 +13,10 @@ export enum METHOD_GET_ELEMENT_ENUM {
   id = "id",
   domHierarchy = "dom-hierarchy",
 }
+
+export enum DESCRIPTION_ITEM_TYPE_ENUM {
+  text = "text",
+  image = "image",
+  link = "link",
+  media = "media",
+}

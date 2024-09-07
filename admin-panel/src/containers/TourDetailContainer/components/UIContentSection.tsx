@@ -1,5 +1,6 @@
 import { Input, Select } from "@/components";
 import { Step } from "@/types/Step";
+import { EditPopoverUiTrigger } from "./EditPopoverUiTrigger";
 
 interface UIContentSectionProps {
   step: Step;
@@ -65,6 +66,7 @@ export const UIContentSection = ({
           ]}
         />
       )}
+      <EditPopoverUiTrigger />
     </div>
   );
 };

@@ -1,12 +1,11 @@
-import { PopoverProps } from 'antd';
-import React from 'react';
-import { StyledPopover } from './styled';
+import { PopoverProps } from "antd";
+import { StyledPopover } from "./styled";
 
 const Popover = (props: PopoverProps) => {
   return (
     <StyledPopover
       {...props}
-      getPopupContainer={(triggerNode) => triggerNode}
+      // getPopupContainer={(triggerNode) => triggerNode}
     />
   );
 };

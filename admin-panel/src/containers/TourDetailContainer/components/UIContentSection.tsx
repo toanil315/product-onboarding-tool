@@ -1,4 +1,4 @@
-import { Input, Select } from "@/components";
+import { Select } from "@/components";
 import { DescriptionItem, Step } from "@/types/Step";
 import { EditPopoverUiTrigger } from "./EditPopoverUiTrigger";
 import { FormProvider, useForm } from "react-hook-form";

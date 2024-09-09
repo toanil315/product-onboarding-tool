@@ -87,7 +87,9 @@ export const preventDefaultWhenDrivenActionIsHighlighted = async (
   if (step.popover.action === "click") {
     listenMouseDownForDrivenAction(
       step,
-      { ...nextStep, index: currentIndex + 1 } as Step & { index: number },
+      { ...nextStep, index: currentIndex + 1 } as unknown as Step & {
+        index: number;
+      },
       driverInstance
     );
   } else {
@@ -215,9 +217,14 @@ window.openVideoPopup = (videoUrl: string) => {
     element: undefined,
     popover: {
       popoverClass: "introduction-linked-site",
-      description: modalTemplate({ videoUrl } as PopoverConfig, {
-        allowClose: true,
-      }),
+      description: modalTemplate(
+        {
+          description: [{ type: "iframe", value: videoUrl }],
+        } as PopoverConfig,
+        {
+          allowClose: true,
+        }
+      ),
     },
   };
   mainDriverInstance.destroy();

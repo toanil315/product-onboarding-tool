@@ -19,4 +19,6 @@ export enum DESCRIPTION_ITEM_TYPE_ENUM {
   image = "image",
   link = "link",
   media = "media",
+  iframe = "iframe",
+  description = "description",
 }

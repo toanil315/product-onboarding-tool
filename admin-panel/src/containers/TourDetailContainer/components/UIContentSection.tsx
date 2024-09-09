@@ -1,8 +1,9 @@
 import { Select } from "@/components";
 import { DescriptionItem, Step } from "@/types/Step";
-import { EditPopoverUiTrigger } from "./EditPopoverUiTrigger";
+import { PopoverEditorTrigger } from "./PopoverEditorTrigger";
 import { FormProvider, useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { ModalEditorTrigger } from "./ModalEditorTrigger";
 
 interface UIContentSectionProps {
   step: Step;
@@ -65,7 +66,11 @@ export const UIContentSection = ({
         />
       )}
       <FormProvider {...form}>
-        <EditPopoverUiTrigger onPublish={handlePublishPopoverUI} />
+        {step.stepType !== "modal" ? (
+          <PopoverEditorTrigger onPublish={handlePublishPopoverUI} />
+        ) : (
+          <ModalEditorTrigger onPublish={handlePublishPopoverUI} />
+        )}
       </FormProvider>
     </div>
   );

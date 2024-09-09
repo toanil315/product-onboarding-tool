@@ -27,7 +27,7 @@ interface Props {
   onPublish: (newStepProps: Pick<Step, "title" | "description">) => void;
 }
 
-export const EditPopoverUiTrigger = ({ onPublish }: Props) => {
+export const PopoverEditorTrigger = ({ onPublish }: Props) => {
   const drawer = useModal();
   const containerRef = useRef<HTMLFormElement | null>(null);
   const form = useFormContext();
@@ -242,7 +242,7 @@ export const EditPopoverUiTrigger = ({ onPublish }: Props) => {
           onClose={drawer.hide}
           title={
             <div className="flex flex-row items-center justify-between">
-              Edit Popover UI
+              Popover Editor
               <Button onClick={handlePublish} size="small">
                 Publish
               </Button>

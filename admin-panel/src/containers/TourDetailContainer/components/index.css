@@ -76,6 +76,7 @@
 .driver-popover-title[style*="block"] + .driver-popover-description {
   margin-top: 5px;
 }
+
 .driver-popover-description {
   margin-bottom: 0;
 
@@ -337,32 +338,38 @@
   background-color: #fff;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
   height: max-content;
-  width: 866px;
+  width: 666px;
   margin: auto;
 }
 
 .introduction-acciona-logo {
   max-width: 200px;
+  height: 60px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 4px;
+
+  color: black;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 
 .introduction-line {
   width: 100%;
   border-bottom: 1px solid #d5dbea;
-  position: absolute;
-  left: 0;
 }
 
 .introduction-title {
   font-size: 32px;
-  margin: 20px 0;
+  margin: 20px auto;
   color: #565656;
+  text-align: center;
+  width: 80%;
 }
+
 .introduction-subtitle {
   font-size: 16px;
   color: #666;
@@ -375,7 +382,7 @@
 }
 
 .introduction-video-container iframe {
-  width: 686px;
+  width: 100%;
   height: 392px;
   border-radius: 8px;
 }
@@ -403,16 +410,8 @@
 }
 
 @media only screen and (max-width: 1440px) {
-  .introduction-content {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    max-height: 584px;
-  }
   .introduction-title {
-    margin: 10px 0 0 0;
+    margin: 10px auto;
     font-size: 24px;
   }
   .introduction-subtitle {

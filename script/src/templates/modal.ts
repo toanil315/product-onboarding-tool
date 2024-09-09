@@ -1,10 +1,10 @@
-import { PopoverConfig } from "@/entities/Step";
+import { DescriptionItem, PopoverConfig } from "@/entities/Step";
 
 export const modalTemplate = (
   popoverConfig: PopoverConfig,
   options: { allowClose?: boolean } = {}
 ) => {
-  const { title, description, videoUrl } = popoverConfig;
+  const { title, description } = popoverConfig;
   const { allowClose } = options;
 
   return `
@@ -39,7 +39,12 @@ export const modalTemplate = (
   </div>
   </button > `
   }
-  <div class="introduction-acciona-logo">Logo</div>
+  <div class="introduction-acciona-logo">
+    <svg width="30" height="30">
+      <path d="M0,14.52H11.67v11.41l11.67-11.41V3.11H11.67L0,14.52Z" fill="#1E766E" fill-rule="evenodd"></path>
+    </svg>
+    walkthrough
+  </div>
   <div class="introduction-line"></div>
   ${
     title
@@ -48,16 +53,35 @@ export const modalTemplate = (
   `
       : ""
   }
-  ${
-    description
-      ? `
-  <div class="introduction-subtitle">${description}</div>
-  `
-      : ""
-  }
-  <div class="introduction-video-container">
-  <iframe src="${videoUrl}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen />
-  </div>
+${renderDescription(description)}
   </div>
   </div>`;
+};
+
+const renderDescription = (descriptions: DescriptionItem[]) => {
+  let result = "";
+  descriptions.forEach((item) => {
+    switch (item.type) {
+      case "description":
+        result += `<div class="introduction-subtitle">${item.value}</div>`;
+        break;
+      case "image":
+        result += item.value
+          ? `<div className="driver-popover-description-item description-image">
+          <img src="${item.value}" alt="${item.alt}" />
+        </div>`
+          : "";
+        break;
+      case "media":
+        result += item.value
+          ? `  <div class="introduction-video-container">
+          <iframe src="${item.value}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen />
+          </div>`
+          : "";
+        break;
+      default:
+        break;
+    }
+  });
+  return result;
 };

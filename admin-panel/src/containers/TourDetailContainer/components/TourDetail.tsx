@@ -56,8 +56,10 @@ export const TourDetail = () => {
       element: null,
       url: "",
       title: "",
-      description: "",
+      description: [],
       stepType: "tooltip",
+      methodToGetElement: "dom-hierarchy",
+      domHierarchyString: "",
     } as Step;
     setSelectedStep(newStep);
   };
@@ -86,7 +88,7 @@ export const TourDetail = () => {
       const fullFilledStep = {
         ...step,
         title: step.title || "Popover Title",
-        description: step.description || "Popover Description",
+        description: step.description || [],
       };
       if (!option.debounce) {
         return iframeElementRef.current?.contentWindow?.postMessage(

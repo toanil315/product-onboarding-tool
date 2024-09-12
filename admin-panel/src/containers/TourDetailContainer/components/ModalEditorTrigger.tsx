@@ -68,7 +68,7 @@ export const ModalEditorTrigger = ({ onPublish }: Props) => {
         ),
       },
       {
-        id: "iframe",
+        id: "media",
         render: () => (
           <MediaModalTrigger
             onSubmit={(data) => append(data)}
@@ -76,7 +76,7 @@ export const ModalEditorTrigger = ({ onPublish }: Props) => {
           >
             <div className="flex flex-col gap-2 p-3 items-center hover:shadow-md cursor-pointer">
               <MediaIcon {...baseIconProps} />
-              <p className="capitalize font-medium text-gray-500">iframe</p>
+              <p className="capitalize font-medium text-gray-500">media</p>
             </div>
           </MediaModalTrigger>
         ),

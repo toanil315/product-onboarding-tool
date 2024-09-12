@@ -219,7 +219,7 @@ window.openVideoPopup = (videoUrl: string) => {
       popoverClass: "introduction-linked-site",
       description: modalTemplate(
         {
-          description: [{ type: "iframe", value: videoUrl }],
+          description: [{ type: "media", value: videoUrl }],
         } as PopoverConfig,
         {
           allowClose: true,

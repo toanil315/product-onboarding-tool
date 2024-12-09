@@ -150,23 +150,25 @@ async function initTourListener() {
   }
 }
 
+async function loadListeners(rootElementId: string) {
+  await new Promise<void>((resolve) => {
+    const interval = setInterval(() => {
+      // i want to make sure that react app is mounted
+      if (document.getElementById(rootElementId)?.childElementCount) {
+        clearInterval(interval);
+        initDriverJs();
+        resolve();
+      }
+    }, 1000);
+  });
+  overrideWindowFetchMethod();
+  initTourCreatorTool();
+  initTourListener();
+}
+
 async function initTourConnection(rootElementId: string) {
   sendCredentialsToEditor();
-  window.onload = async function () {
-    await new Promise<void>((resolve) => {
-      const interval = setInterval(() => {
-        // i want to make sure that react app is mounted
-        if (document.getElementById(rootElementId)?.childElementCount) {
-          clearInterval(interval);
-          initDriverJs();
-          resolve();
-        }
-      }, 1000);
-    });
-    overrideWindowFetchMethod();
-    initTourCreatorTool();
-    initTourListener();
-  };
+  loadListeners(rootElementId);
 }
 
 (window as any).initTourConnection = initTourConnection;

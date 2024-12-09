@@ -133,7 +133,7 @@ export const updateContentOfPopover = (step: Step) => {
 export const convertFromDtoToDriverJsStep = (step: StepResponse): Step => {
   const { element, domHierarchyString, methodToGetElement, ...restStep } = step;
   return {
-    id: Date.now(),
+    id: step.id || Date.now(),
     element,
     domHierarchyString,
     methodToGetElement,

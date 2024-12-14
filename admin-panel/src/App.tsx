@@ -8,6 +8,8 @@ import { NotificationProvider } from "./contexts";
 import { I18nextProvider } from "react-i18next";
 import i18n from "@/i18n";
 import { TourDetail } from "./containers/TourDetailContainer/components";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { ListTour } from "./containers/TourListContainer/components";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,6 +18,17 @@ export const queryClient = new QueryClient({
     },
   },
 });
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <ListTour />,
+  },
+  {
+    path: "/:tourId",
+    element: <TourDetail />,
+  },
+]);
 
 const App = () => {
   const convertToPx = (value: string) => Number(value.replace("px", ""));
@@ -40,11 +53,12 @@ const App = () => {
       theme: antdTheme,
     }),
     createProviderConfig(NotificationProvider),
+    createProviderConfig(RouterProvider, { router }),
   ];
 
   return (
     <ProviderTree providers={providersAndConfigs}>
-      <TourDetail />
+      <></>
     </ProviderTree>
   );
 };

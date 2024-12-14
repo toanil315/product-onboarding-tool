@@ -153,12 +153,10 @@ export const highlightELement = (event: MessageEvent) => {
   }
 
   if (shouldShowPopover) {
-    setTimeout(() => {
-      return toolDriverInstance.highlight({
-        element: element || undefined,
-        popover: buildPopoverContent(popover),
-      });
-    }, 100);
+    return toolDriverInstance.highlight({
+      element: element || undefined,
+      popover: buildPopoverContent(popover),
+    });
   }
 
   return toolDriverInstance.destroy();

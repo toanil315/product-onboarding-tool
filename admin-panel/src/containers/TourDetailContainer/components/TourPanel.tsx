@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { useSaveTour } from "@/hooks/useTour";
 import { openNotification } from "@/contexts/NotificationContext";
 import { MESSAGES_EVENT_ENUM } from "@/constants/event";
+import { useNavigate } from "react-router-dom";
 
 interface TourPanelProps {
   tour: Tour;
@@ -20,26 +21,24 @@ interface TourPanelProps {
 }
 
 export const TourPanel = (props: TourPanelProps) => {
+  const navigate = useNavigate();
   const { tour, iframeElement } = props;
   const steps = tour.steps || [];
   const { mutateAsync, isPending } = useSaveTour();
 
-  const form = useForm<BaseTour>({
+  const form = useForm({
     defaultValues: {
       name: "",
       description: "",
-      forRole: undefined,
       url: "",
       steps: [],
-      isActive: false,
     },
     resolver: yupResolver(
       yup.object().shape({
         name: yup.string().required("this field is required"),
         description: yup.string().required("this field is required"),
-        forRole: yup.string().required("this field is required"),
         url: yup.string().required("this field is required"),
-        isActive: yup.boolean(),
+        steps: yup.array(),
       })
     ),
   });
@@ -58,7 +57,7 @@ export const TourPanel = (props: TourPanelProps) => {
     );
   };
 
-  const onSubmit = async (value: BaseTour) => {
+  const onSubmit = async (value: Partial<BaseTour>) => {
     await mutateAsync({
       ...tour,
       ...value,
@@ -67,6 +66,7 @@ export const TourPanel = (props: TourPanelProps) => {
       message: "Edit Tour Success.",
       type: "success",
     });
+    navigate("/");
   };
 
   return (
@@ -100,13 +100,6 @@ export const TourPanel = (props: TourPanelProps) => {
                         placeholder="Enter tour description"
                         required
                         type="textarea"
-                      />
-                      <Form.Select
-                        label="Role"
-                        name="forRole"
-                        options={PERSONA_OPTIONS}
-                        required
-                        placeholder="Select role"
                       />
                       <Form.Input
                         name="url"

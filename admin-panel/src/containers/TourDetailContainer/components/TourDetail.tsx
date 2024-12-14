@@ -5,12 +5,14 @@ import { Step } from "@/types/Step";
 import { TourPanel } from "./TourPanel";
 import { StepDetailPanel } from "./StepDetailPanel";
 import { MESSAGES_EVENT_ENUM } from "@/constants/event";
+import { useParams } from "react-router-dom";
 
 export const TourDetail = () => {
+  const { tourId = "" } = useParams();
   const [selectedStep, setSelectedStep] = useState<Step | null>(null);
   const [isSettingUpFinished, setIsSettingUpFinished] = useState(false);
   const iframeElementRef = useRef<HTMLIFrameElement | null>(null);
-  const { data } = useTour();
+  const { data } = useTour(tourId);
   const { mutateAsync } = useSaveTour();
   const tour = data?.data as Tour;
   const debounceHighlightElementRef = useRef<NodeJS.Timeout | null>(null);
@@ -85,6 +87,8 @@ export const TourDetail = () => {
   ) => {
     setSelectedStep(step);
     if (step && option.highlight) {
+      console.log(step.description);
+
       const fullFilledStep = {
         ...step,
         title: step.title || "Popover Title",

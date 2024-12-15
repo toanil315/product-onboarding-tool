@@ -16,43 +16,50 @@ import {
   toolDriverInstance,
   webDriverInstance,
 } from "./libs/driverJs";
+import { pathToRegexp } from "path-to-regexp";
 
 export let isInEditor = false;
-const parent = window.parent;
-let tourData = null as any;
-const API_URL = "YOUR_API_URL";
-
-async function waitForTourData() {
-  try {
-    await fetchTourData();
-  } catch (error) {
-    console.log("waitForTourData error: ", error);
-  }
-}
+const API_URL = "http://localhost:5500/tours";
 
 async function fetchTourData() {
   const data = await fetch(API_URL);
   if (!data.ok) return;
-  tourData = await data.json();
+  return data.json();
+}
+
+async function getProperlyTourData() {
+  const tourData = await fetchTourData();
+  const pathname = window.location.pathname;
+  const hostname = window.location.hostname;
+
+  return tourData.find((tour: any) => {
+    const pathNamePatter = pathToRegexp(tour.pathNamePattern);
+
+    const activeCondition = tour.status === "published";
+    let urlCondition =
+      tour.url.includes(hostname) &&
+      window.location.href.includes(tour.url) &&
+      pathNamePatter.regexp.test(pathname);
+
+    return activeCondition && urlCondition;
+  });
 }
 
 async function showTour() {
-  await waitForTourData();
-
-  if (!tourData) return;
-
   try {
-    const tour = tourData[0];
-    if (tour) {
+    const tourData = await getProperlyTourData();
+    if (!tourData) return;
+
+    if (tourData) {
       webDriverInstance.setConfig({
-        ...tour,
+        ...tourData,
         ...BASE_TOUR_CONFIG,
-        steps: buildFullTour(tour.Steps),
+        steps: buildFullTour(tourData.steps),
       });
       webDriverInstance.drive();
     }
   } catch (error) {
-    console.log("showTourBaseOnPersona error: ", error);
+    console.log("showTour error: ", error);
   }
 }
 

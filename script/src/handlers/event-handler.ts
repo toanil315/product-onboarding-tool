@@ -51,7 +51,7 @@ export const listenKeyDownForDrivenAction = (
   const elementInstance = document.querySelector(currentStep.element);
   if (!elementInstance) return;
 
-  let debounce: number | null = null;
+  let debounce: NodeJS.Timeout | null = null;
 
   function moveNextWhenActionIsTriggered() {
     if (debounce) {

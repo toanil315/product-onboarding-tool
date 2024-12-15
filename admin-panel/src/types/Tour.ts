@@ -6,10 +6,8 @@ export interface BaseTour {
   description: string;
   steps?: Step[];
   url: string;
-  nextTourId?: string;
-  forRole: string;
-  isActive?: boolean;
   status?: TOUR_STATUS_ENUM;
+  pathNamePattern: string;
 }
 
 export interface Tour extends BaseTour {

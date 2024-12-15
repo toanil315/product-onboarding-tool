@@ -19,12 +19,14 @@ export const TourModal = ({
       name: "",
       description: "",
       url: "",
+      pathNamePattern: "/",
     },
     resolver: yupResolver(
       yup.object().shape({
         name: yup.string().required("Name is required"),
         description: yup.string().required("Description is required"),
         url: yup.string().required("Url is required"),
+        pathNamePattern: yup.string().required("Path name pattern is required"),
       })
     ),
   });
@@ -71,6 +73,12 @@ export const TourModal = ({
           name="url"
           label="Website Url"
           placeholder="Enter website url"
+          required
+        />
+        <Form.Input
+          name="pathNamePattern"
+          label="Path Name Pattern"
+          placeholder="Enter path name pattern"
           required
         />
         <Button loading={isPending}>Submit</Button>

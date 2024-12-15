@@ -1,7 +1,7 @@
 import { MESSAGES_EVENT_ENUM } from "@/constants/event";
 
 let PENDING_NETWORK_REQUESTS = {} as Record<string, boolean>;
-let notifyWhenAllRequestsAreDone = null as number | null;
+let notifyWhenAllRequestsAreDone = null as NodeJS.Timeout | null;
 
 export const markAsPendingRequest = (requestKey: string) => {
   PENDING_NETWORK_REQUESTS[requestKey] = false;
